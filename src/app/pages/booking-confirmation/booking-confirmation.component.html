@@ -1,0 +1,114 @@
+<div class="min-h-screen bg-gradient-to-b from-green-50 to-blue-50">
+  <!-- Success Header -->
+  <div class="bg-gradient-to-r from-green-500 to-emerald-500 text-white py-12">
+    <div class="max-w-4xl mx-auto px-6 text-center">
+      <div class="mb-4 text-6xl animate-bounce">✓</div>
+      <h1 class="text-4xl font-bold mb-2">Booking Confirmed!</h1>
+      <p class="text-green-100 text-lg">Your tickets have been successfully reserved</p>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="max-w-4xl mx-auto px-6 py-8">
+    <!-- Confirmation Card -->
+    <div class="bg-white rounded-xl shadow-lg p-8 mb-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8 pb-8 border-b">
+        <!-- Booking ID -->
+        <div>
+          <p class="text-gray-600 text-sm font-medium mb-2">Booking ID</p>
+          <p class="text-3xl font-bold text-gray-800 break-all">{{ bookingId }}</p>
+          <p class="text-gray-500 text-sm mt-2">Save this for your records</p>
+        </div>
+
+        <!-- Booking Date/Time -->
+        <div>
+          <p class="text-gray-600 text-sm font-medium mb-2">Booking Date & Time</p>
+          <p class="text-2xl font-bold text-gray-800">{{ bookingDate | date: 'MMM dd, yyyy' }}</p>
+          <p class="text-gray-600 text-sm mt-2">{{ bookingDate | date: 'hh:mm a' }}</p>
+        </div>
+      </div>
+
+      <!-- Booking Details -->
+      <div *ngIf="bookingData" class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8 pb-8 border-b">
+        <div>
+          <p class="text-gray-600 text-sm font-medium mb-1">Selected Seats</p>
+          <div class="flex flex-wrap gap-2">
+            <span *ngFor="let seat of bookingData.seats" class="px-3 py-1 bg-blue-100 text-blue-700 rounded-full font-semibold">
+              {{ seat }}
+            </span>
+          </div>
+        </div>
+
+        <div>
+          <p class="text-gray-600 text-sm font-medium mb-1">Number of Seats</p>
+          <p class="text-2xl font-bold text-gray-800">{{ bookingData.seats.length }}</p>
+        </div>
+
+        <div>
+          <p class="text-gray-600 text-sm font-medium mb-1">Subtotal</p>
+          <p class="text-2xl font-bold text-green-600">₹{{ bookingData.totalPrice }}</p>
+        </div>
+      </div>
+
+      <!-- Price Breakdown -->
+      <div class="bg-gray-50 rounded-lg p-6 mb-8">
+        <h3 class="text-lg font-bold text-gray-800 mb-4">Price Breakdown</h3>
+        <div *ngIf="bookingData" class="space-y-3">
+          <div class="flex justify-between">
+            <span class="text-gray-700">Ticket Price × {{ bookingData.seats.length }}</span>
+            <span class="font-semibold text-gray-800">₹{{ bookingData.totalPrice }}</span>
+          </div>
+          <div class="flex justify-between">
+            <span class="text-gray-700">Taxes & Fees (18% GST)</span>
+            <span class="font-semibold text-gray-800">₹{{ ((bookingData.totalPrice * 0.18).toFixed(0)) }}</span>
+          </div>
+          <div class="border-t-2 border-gray-300 pt-3 flex justify-between">
+            <span class="text-lg font-bold text-gray-800">Total Amount Paid</span>
+            <span class="text-2xl font-bold text-green-600">₹{{ totalWithTax.toFixed(0) }}</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Important Info -->
+      <div class="bg-blue-50 border-l-4 border-blue-500 p-4 mb-8 rounded">
+        <h4 class="font-bold text-blue-900 mb-2">Important Information</h4>
+        <ul class="text-blue-800 text-sm space-y-1">
+          <li>✓ Please arrive 15 minutes before the show time</li>
+          <li>✓ Your ticket is valid for the date and time mentioned above</li>
+          <li>✓ Refund policy: 50% refund if cancelled 24 hours before show</li>
+          <li>✓ Entry is only through your digital ticket</li>
+        </ul>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <button (click)="downloadTicket()" class="action-button download-btn">
+          📥 Download Ticket
+        </button>
+        <button (click)="sendToEmail()" class="action-button email-btn">
+          📧 Send to Email
+        </button>
+      </div>
+    </div>
+
+    <!-- Secondary Actions -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      <button (click)="viewMyBookings()" class="secondary-button">
+        📋 View My Bookings
+      </button>
+      <button (click)="bookAnother()" class="secondary-button primary">
+        🎬 Book Another Movie
+      </button>
+    </div>
+
+    <!-- Share Section -->
+    <div class="text-center mt-8">
+      <p class="text-gray-600 mb-4">Share your booking</p>
+      <div class="flex justify-center gap-4">
+        <button class="share-button">Facebook</button>
+        <button class="share-button">Twitter</button>
+        <button class="share-button">WhatsApp</button>
+      </div>
+    </div>
+  </div>
+</div>

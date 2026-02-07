@@ -1,0 +1,102 @@
+:host {
+  display: block;
+}
+
+.seat {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 0.25rem;
+  border: 2px solid #4b5563;
+  background: #374151;
+  color: #d1d5db;
+  font-size: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.seat:hover:not(:disabled) {
+  border-color: #f97316;
+  transform: scale(1.1);
+  box-shadow: 0 0 8px rgba(249, 115, 22, 0.5);
+}
+
+.seat.selected {
+  background: #f97316;
+  border-color: #ea580c;
+  color: white;
+  box-shadow: 0 0 12px rgba(249, 115, 22, 0.6);
+}
+
+.seat.booked {
+  background: #b91c1c;
+  border-color: #7f1d1d;
+  color: #fee2e2;
+  cursor: not-allowed;
+}
+
+.seat:disabled {
+  cursor: not-allowed;
+}
+
+.checkout-button {
+  width: 100%;
+  padding: 0.875rem;
+  background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
+  color: white;
+  border: none;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(249, 115, 22, 0.4);
+}
+
+.checkout-button:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(249, 115, 22, 0.5);
+}
+
+.checkout-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.unselect-button {
+  width: 100%;
+  padding: 0.75rem;
+  background: #4b5563;
+  color: #d1d5db;
+  border: 1px solid #6b7280;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.unselect-button:hover:not(:disabled) {
+  background: #6b7280;
+  color: white;
+}
+
+.unselect-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin {
+  animation: spin 1s linear infinite;
+}

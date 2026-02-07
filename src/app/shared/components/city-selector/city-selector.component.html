@@ -1,1 +1,28 @@
-<p>city-selector works!</p>
+<div class="p-6 bg-white rounded-lg">
+  <h2 class="text-2xl font-bold text-gray-800 mb-4">Select Your City</h2>
+  
+  <!-- Search Bar -->
+  <input
+    type="text"
+    placeholder="Search cities..."
+    [(ngModel)]="searchText"
+    class="w-full border border-gray-300 rounded px-4 py-2 mb-4
+           focus:outline-none focus:ring-2 focus:ring-orange-500">
+  
+  <!-- Cities List -->
+  <div class="max-h-64 overflow-y-auto">
+    <button
+      *ngFor="let city of filteredCities()"
+      (click)="selectCity(city)"
+      class="w-full text-left px-4 py-3 hover:bg-orange-50
+             border-b border-gray-200 transition duration-150
+             hover:text-orange-600 font-medium">
+      {{ city }}
+    </button>
+  </div>
+  
+  <!-- No results -->
+  <div *ngIf="filteredCities().length === 0" class="p-4 text-center text-gray-500">
+    No cities found
+  </div>
+</div>

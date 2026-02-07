@@ -1,0 +1,25 @@
+<div class="movie-card">
+  
+  <!-- Poster Placeholder -->
+  <div class="poster-placeholder">
+    <span>🎬 Poster</span>
+  </div>
+
+  <!-- Movie Details -->
+  <div class="movie-details">
+    <h3 class="movie-title" [title]="title">
+      {{ title }}
+    </h3>
+
+    <p class="rating">
+      ⭐ {{ rating.toFixed(1) }}/5.0
+    </p>
+
+    <a
+      [routerLink]="['/movie', id]"
+      class="book-button"
+      type="button">
+      View Details
+    </a>
+  </div>
+</div>

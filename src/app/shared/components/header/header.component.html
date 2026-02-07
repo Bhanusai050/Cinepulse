@@ -3,10 +3,21 @@
     CinePulse
   </h1>
 
-  <button
-    class="bg-white text-red-600 px-4 py-2 rounded font-medium"
-    (click)="openCitySelector()"
-  >
-    {{ selectedCity }}
-  </button>
+  <div class="flex items-center gap-4">
+    <button
+      class="bg-white text-red-600 px-4 py-2 rounded font-medium"
+      (click)="openCitySelector()"
+    >
+      {{ selectedCity }}
+    </button>
+
+    <ng-container *ngIf="currentUser; else signedOut">
+      <span class="text-sm">Hello, {{ currentUser.name }}</span>
+      <button class="bg-white text-red-600 px-3 py-1 rounded" (click)="signOut()">Sign Out</button>
+    </ng-container>
+
+    <ng-template #signedOut>
+      <button class="bg-white text-red-600 px-4 py-2 rounded font-medium" (click)="goToSignIn()">Sign In</button>
+    </ng-template>
+  </div>
 </header>

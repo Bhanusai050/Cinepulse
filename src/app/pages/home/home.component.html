@@ -1,0 +1,29 @@
+<!-- HOME PAGE: header, search and movie grid -->
+<app-header (citySelected)="onCitySelected($event)"></app-header>
+
+<main class="p-6 bg-gray-100 min-h-screen">
+  <section class="mb-6">
+    <input
+      type="text"
+      placeholder="Search for movies..."
+      [(ngModel)]="searchText"
+      class="w-full border border-gray-300 rounded px-4 py-3 text-lg
+             focus:outline-none focus:ring-2 focus:ring-orange-500
+             shadow-sm">
+  </section>
+
+  <section>
+    <h2 class="text-xl font-semibold text-gray-800 mb-4">
+      Now Showing
+      <span class="text-sm text-gray-500">({{ filteredMovies.length }} results)</span>
+    </h2>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+      <app-movie-card *ngFor="let movie of filteredMovies" [id]="movie.id" [title]="movie.title" [rating]="movie.rating"></app-movie-card>
+    </div>
+
+    <div *ngIf="filteredMovies.length === 0" class="text-center py-12">
+      <p class="text-gray-500 text-lg">No movies found. Try different filters.</p>
+    </div>
+  </section>
+</main>

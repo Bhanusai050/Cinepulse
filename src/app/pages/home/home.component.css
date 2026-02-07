@@ -1,0 +1,4 @@
+/* Minimal home styles (component-scoped) */
+:host {
+  display: block;
+}
